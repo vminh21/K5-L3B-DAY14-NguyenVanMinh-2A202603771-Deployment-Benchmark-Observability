@@ -1,0 +1,50 @@
+# Quality gate (Exercise 7.3): chặn merge nếu agent v2 không đạt 100% golden dataset
+# hoặc có câu bị regression so với baseline đã commit.
+# Bật "Require status checks to pass" cho job `eval-gate` trong Branch protection của main
+# → PR có exit code ≠ 0 ở bước eval sẽ không merge được.
+name: eval-gate
+
+on:
+  pull_request:
+    paths:
+      - "06-lab-complete/benchmark-observability/develop/**"
+  push:
+    branches: [main]
+
+jobs:
+  eval-gate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 06-lab-complete/benchmark-observability/develop
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+
+      - name: Start agent v2
+        # MOCK_ERROR_RATE=0: gate đo CHẤT LƯỢNG câu trả lời, không để lỗi upstream ngẫu nhiên
+        # của mock (1%) làm job fail chập chờn.
+        env:
+          AGENT_VERSION: v2
+          PORT: "8002"
+          MOCK_ERROR_RATE: "0"
+        run: |
+          nohup python app.py > agent.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://localhost:8002/health && break; sleep 1; done
+
+      - name: Eval quality gate (exit code 1 → job fail → chặn merge)
+        run: |
+          python eval/run_eval.py --url http://localhost:8002 \
+            --min-accuracy 1.0 --baseline reports/eval_v2_fixed.json \
+            --out reports/eval_ci.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-report
+          path: |
+            06-lab-complete/benchmark-observability/develop/reports/eval_ci.json
+            06-lab-complete/benchmark-observability/develop/agent.log

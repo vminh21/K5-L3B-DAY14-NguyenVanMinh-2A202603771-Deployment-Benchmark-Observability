@@ -1,0 +1,25 @@
+A change applied (agents recreated): 08:33:27Z
+D docker pause agent-1: 08:33:34Z
+D unpause: 08:36:27Z
+A reverted: 08:36:27Z
+B MOCK_SLOW_RATE=0.3 applied: 08:37:20Z
+B metrics @ 08:39:50Z:
+ avg_s=0.593 p50_s=0.216 p95_s=1.906 p99_s=1.981
+ cost_per_hour_baseline_small=1.24
+B reverted + C LLM_MODEL=mock-llm-large applied: 08:39:52Z
+cost/h (1m rate, large): 23.270072727272993
+LLM p95 s (large): 0.49507117437722414
+C reverted + E AGENT_VERSION=v1 applied: 08:42:28Z
+E observation @ 08:46:39Z:
+ agent_info: [('v1', 2.0)]
+ retrieval hits/s (1m): []
+ tokens/s by type (1m): [('input', 447.392), ('output', 243.978)]
+ error rate (1m): [('', 0.01)]
+ p95 s (1m): [('', 0.198)]
+ alerts: [('LLMCostBurnRateHigh', 'firing')]
+tokens/LLM call v2 @08:39:45Z: [('input', 79.49), ('output', 42.34)]
+tokens/LLM call v1 @08:46:30Z: [('input', 36.38), ('output', 19.85)]
+retrieval/s v2 @08:39:45Z: [('hit', 10.2)]
+retrieval/s v1 @08:46:30Z: []
+E: no alerts at 08:47:21Z: []
+E reverted (v2): 08:47:31Z

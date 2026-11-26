@@ -1,0 +1,22 @@
+08:33:13Z LLMCostBurnRateHigh -> firing (activeAt=2026-11-26T08:25:37.571501534Z)
+08:33:28Z AgentInstanceDown@172.24.0.8:8000 -> pending (activeAt=2026-11-26T08:33:27.401817116Z)
+08:33:34Z AgentHighLatencyP95 -> pending (activeAt=2026-11-26T08:33:32.401817116Z)
+08:33:34Z AgentInstanceDown@172.24.0.8:8000 -> resolved
+08:33:37Z AgentHighLatencyP95 -> resolved
+08:33:43Z AgentHighErrorRate -> pending (activeAt=2026-11-26T08:33:42.401817116Z)
+08:33:43Z AgentInstanceDown@172.24.0.8:8000 -> pending (activeAt=2026-11-26T08:33:42.401817116Z)
+08:34:14Z AgentInstanceDown@172.24.0.8:8000 -> firing (activeAt=2026-11-26T08:33:42.401817116Z)
+08:34:44Z AgentHighErrorRate -> firing (activeAt=2026-11-26T08:33:42.401817116Z)
+08:36:29Z AgentInstanceDown@172.24.0.8:8000 -> resolved
+08:36:59Z LLMCostBurnRateHigh -> resolved
+08:37:14Z AgentHighErrorRate -> resolved
+08:37:38Z AgentHighLatencyP95 -> pending (activeAt=2026-11-26T08:37:37.401817116Z)
+08:39:39Z AgentHighLatencyP95 -> firing (activeAt=2026-11-26T08:37:37.401817116Z)
+08:39:54Z AgentInstanceDown@172.24.0.8:8000 -> pending (activeAt=2026-11-26T08:39:52.401817116Z)
+08:39:54Z AgentInstanceDown@172.24.0.7:8000 -> pending (activeAt=2026-11-26T08:39:52.401817116Z)
+08:40:00Z AgentInstanceDown@172.24.0.8:8000 -> resolved
+08:40:00Z AgentInstanceDown@172.24.0.7:8000 -> resolved
+08:40:18Z LLMCostBurnRateHigh -> pending (activeAt=2026-11-26T08:40:17.571501534Z)
+08:40:45Z AgentHighLatencyP95 -> resolved
+08:42:18Z LLMCostBurnRateHigh -> firing (activeAt=2026-11-26T08:40:17.571501534Z)
+08:47:19Z LLMCostBurnRateHigh -> resolved
